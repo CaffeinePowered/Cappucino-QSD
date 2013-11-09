@@ -22,7 +22,11 @@
 		public function Pepper()
 		{
 			return 
-			"pepper";
+			"TXBtLQ0ER0UA9zgeGjnCZE305IvIjTcwnlCL9vb1".
+			"25AZn3oNvrZOx2l2L3rcAbe5O03JVJ9VwbcRumfF".
+			"yUP8VgH6bMcwqs0MVUYydbaNHmg5WKla24xR0rT5".
+			"FHZqE6SdMoVbOrd1wdLV54u3msAUQGFwV3pw3Cu1".
+			"QwzlwG2RHw4EuLtZ0xdgLI87BB5zdBtTudJ5OKNW";
 		}
 		/*
 			Returns a hashing salt to be stored in the user's profile.
@@ -33,6 +37,14 @@
 			$fresh = base64_encode(fread($fp, 32));
 			fclose($fp);
 			return $fresh;
+		}
+		public function GetLoggedIn()
+		{
+			if($this->GetSessionNormal())
+			{
+				return true;
+			}
+			return false;
 		}
 		public function GetCurrentUserID()
 		{
@@ -67,7 +79,7 @@
 			{
 				$uid = $results[0]['id'];
 				$_SESSION['LoginNormal'] = serialize($results);
-				return true;
+				return $uid;
 			}
 			return false;
 		}
@@ -107,5 +119,9 @@
 					date("Y-m-d H:i:s",time() + (28 * (60 * 60 * 24)))
 					)	
 				);
+			if($this->db->LastID())
+			{
+				return $this->db->LastID();
+			}
 		}
 	}

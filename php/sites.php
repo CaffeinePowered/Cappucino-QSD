@@ -31,11 +31,7 @@
 				)
 			);
 			//Get the site we just added and add to the session
-			$v = $this->db->Query(
-				"SELECT * FROM sites WHERE domain_id = ? AND user_id = ?",
-				array($domain_id, $user_id)
-			);
-			$_SESSION['CurrentSite'] = $v[0]['id'];
+			$_SESSION['CurrentSite'] = $this->db->LastID();
 
 			//add a default home page
 			$p = new Page();
@@ -59,21 +55,15 @@
 					NULL
 				)
 			);
+
+			return $_SESSION['CurrentSite'];
 		}
 		function AutoGenerateSite()
 		{
-			$site_title = 'My New Web Site';
+			$site_title = ucwords('My New Web Site');
 			$d = new Domain();
 			$domain_id = $d->RegisterNewSubdomain($d->RandomSubdomainName());
-			$this->RegisterNewSite($site_title, $domain_id); 
+			return $this->RegisterNewSite($site_title, $domain_id); 
 		}
 
 	}
-
-	var_dump($_SESSION);
-
-	$u = new User();
-	//var_dump($u->LoginNormal('1383944095', 'pineapple!'));
-
-	$s = new Site();
-	$s->AutoGenerateSite();
