@@ -12,19 +12,20 @@
 		function AddPage($url, $site_id, $title, $content)
 		{
 			$u = new User();
-			$session = $u->GetSessionNormal();
-			$uid = $session['id'];
+			$user_id = $u->GetCurrentUserID();
 
+			$params = array(NULL, $site_id, $user_id, $title, $url,
+					date("Y-m-d H:i:s"));
 			$v = $this->db->query(
-				"INSERT INTO pages VALUES(?,?,?,?,?,?,?)",
-				array(NULL, $site_id, $uid, $title, $url, $content,
-					date(date("Y-m-d H:i:s")))
+				"INSERT INTO pages VALUES (?,?,?,?,?,?)",
+				$params
 			);
 			if(!$v)
 			{
 				throw new Exception('Could not add Page: '.
 					$this->db->error);
 			}
+			return $this->db->LastID();
 		}
 		function GetPageVars($page_id)
 		{

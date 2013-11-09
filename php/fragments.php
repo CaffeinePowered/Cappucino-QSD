@@ -20,6 +20,7 @@
 				throw new Exception('Could not add fragment: '.
 					$this->db->error);
 			}
+			return $this->db->LastID();
 		}
 		function EditFragment($fragment_id, $content)
 		{

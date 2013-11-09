@@ -22,7 +22,7 @@
 		public function Pepper()
 		{
 			return 
-			"Replace Me With Your Own Brand of Pfeffer";
+			"pepper";
 		}
 		/*
 			Returns a hashing salt to be stored in the user's profile.
@@ -33,6 +33,11 @@
 			$fresh = base64_encode(fread($fp, 32));
 			fclose($fp);
 			return $fresh;
+		}
+		public function GetCurrentUserID()
+		{
+			$session = $this->GetSessionNormal();
+			return $session['id'];
 		}
 		/*
 			Retrieves session data for the currently logged-in user.
