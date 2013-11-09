@@ -22,11 +22,7 @@
 		public function Pepper()
 		{
 			return 
-			"TXBtLQ0ER0UA9zgeGjnCZE305IvIjTcwnlCL9vb1".
-			"25AZn3oNvrZOx2l2L3rcAbe5O03JVJ9VwbcRumfF".
-			"yUP8VgH6bMcwqs0MVUYydbaNHmg5WKla24xR0rT5".
-			"FHZqE6SdMoVbOrd1wdLV54u3msAUQGFwV3pw3Cu1".
-			"QwzlwG2RHw4EuLtZ0xdgLI87BB5zdBtTudJ5OKNW";
+			'pepper';
 		}
 		/*
 			Returns a hashing salt to be stored in the user's profile.

@@ -4,7 +4,7 @@
 		private $db;
 		public function __construct()
 		{
-			$this->db = new mysqli("localhost", 'builder','avehub90','builder');
+			$this->db = new mysqli("localhost", 'username','password','database');
 			if($this->db->connect_errno)
 			{
 				throw new Exception("Failed to connect to database server.");
